@@ -31,15 +31,17 @@ In your Gemfile:
 gem 'coffee-cup'
 ```
 
-Coffee Cup rely on a data attribute inside the body tag to indicate the current controller and action.
-It is required to add to your body tag the following code :
+In your javascript manifest
 
 ```javascript
-# /app/assets/javascripts/application.js
+// app/assets/javascripts/application.js
 //= require jquery
 //= require jquery_ujs
 //= require coffee_cup
 ```
+
+Coffee Cup rely on a data attribute inside the body tag to indicate the current controller and action.
+It is required to add to your body tag the following code :
 
 ```ruby
 content_tag(:body, "data-coffee-cup" => CoffeeCup.body_data(request)) do
@@ -60,14 +62,14 @@ You must first create the following directories :
 ```
   # In app/assets/javascripts/
   app
-   |--- helpers
-         |--- application_helpers.coffee
-   |--- views
+   |-- helpers
+         |-- application_helpers.coffee
+   |-- views
 ```
 
 ### Helpers
 ```coffeescript
-# /app/assets/javascripts/app/helpers/application_helpers.coffee
+# app/assets/javascripts/app/helpers/application_helpers.coffee
 @module "ApplicationHelper", ->
   @initialize = ->
 ```
@@ -81,7 +83,7 @@ Inside the views directory, you will place the code for each view. For example, 
 for the users_controller#show, you will create the following file.
 
 ```coffeescript
-# /app/assets/javascripts/app/views/users/show.coffee
+# app/assets/javascripts/app/views/users/show.coffee
 @view "Users.Show",
   constructor: -> # Insert your code for the Users Show action.
 ```
@@ -97,19 +99,19 @@ For example, if you need the same code inside the Users New and Edit, let's say 
 the following :
 
 ```coffeescript
-# /app/assets/javascripts/app/views/users/new.coffee
+# app/assets/javascripts/app/views/users/new.coffee
 @view "Users.New",
   constructor: -> @render 'users/form'
 ```
 
 ```coffeescript
-# /app/assets/javascripts/app/views/users/edit.coffee
+# app/assets/javascripts/app/views/users/edit.coffee
 @view "Users.Edit",
   constructor: -> @render 'users/form'
 ```
 
 ```coffeescript
-# /app/assets/javascripts/app/views/users/_form.coffee
+# app/assets/javascripts/app/views/users/_form.coffee
 @view "Users.Form",
   constructor: -> # This code will be shared between the New and Edit actions.
 ```
