@@ -34,11 +34,17 @@ gem 'coffee-cup'
 Coffee Cup rely on a data attribute inside the body tag to indicate the current controller and action.
 It is required to add to your body tag the following code :
 
+```javascript
+# /app/assets/javascripts/application.js
+//= require jquery
+//= require jquery_ujs
+//= require coffee_cup
+```
+
 ```ruby
 content_tag(:body, "data-coffee-cup" => CoffeeCup.body_data(request)) do
   # Layout
 end
-
 ```
 
 Usage
@@ -53,18 +59,15 @@ You must first create the following directories :
 
 ```
   # In app/assets/javascripts/
-    app
-     |--- helpers
-           |--- application_helpers.coffee
-     |--- views
-
+  app
+   |--- helpers
+         |--- application_helpers.coffee
+   |--- views
 ```
 
 ### Helpers
-
-In the application_helpers.coffee
-
 ```coffeescript
+# /app/assets/javascripts/app/helpers/application_helpers.coffee
 @module "ApplicationHelper", ->
   @initialize = ->
 ```
