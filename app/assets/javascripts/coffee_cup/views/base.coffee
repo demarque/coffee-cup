@@ -13,15 +13,16 @@ class @ActionView
   loadPartial: (url, callback, rootTag = '') ->
     if url.indexOf('?') > 0 then url += '&layout=none' else url += '?layout=none'
 
-    $.get(url, (data) => @receivePartial(data, callback, rootTag))
+    $.get(url, (data) => @receivePartial(data, this, callback, rootTag))
 
 
   locale: () -> $('meta[name="content-language"]').attr('content')
 
 
-  receivePartial: (data, callback, rootTag) ->
+  receivePartial: (data, caller, callback, rootTag) ->
     partial = $('<div>' + data + '</div>').find(rootTag).html()
 
-    callback partial
+    caller[callback](partial)
+
 
   render: (path) -> CoffeeCup.renderView CoffeeCup.camelize(path)
