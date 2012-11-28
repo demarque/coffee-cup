@@ -8,7 +8,7 @@
 
 
   @renderView = (path) ->
-    instanceName = CoffeeCup.camelize($('body').data('instance'))
+    instanceName = CoffeeCup.camelize($('body').data('instance')) if $('body').data('instance')
 
     try eval("new Views.#{path}")
     try eval("new Views.#{instanceName}.#{path}")
