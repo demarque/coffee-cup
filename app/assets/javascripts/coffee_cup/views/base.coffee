@@ -20,7 +20,10 @@ class @ActionView
 
 
   receivePartial: (data, caller, callback, rootTag) ->
-    partial = $('<div>' + data + '</div>').find(rootTag).html()
+    if rootTag isnt ''
+      partial = $('<div>' + data + '</div>').find(rootTag).html()
+    else
+      partial = data
 
     caller[callback](partial)
 

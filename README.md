@@ -116,8 +116,25 @@ the following :
   constructor: -> # This code will be shared between the New and Edit actions.
 ```
 
+### Loading a partial
+
+You can use the method ```loadPartial``` to make an AJAX call to the server requesting html content.
+
+```coffeescript
+# app/assets/javascripts/app/views/users/index.coffee
+@view "Users.Index",
+  loadUserProfile: -> @loadPartial 'http://app.dev/users/show', 'myCallbackMethod', '#id-of-the-root-element'
+
+  myCallbackMethod: (data) -> $('body').append(data)
+```
+
+This method will call the url by adding the parameter ```layout=none```. After receiving the response, it will call
+the callback method in the current context.
+
+The last parameter is optional and will be used to restrict the received html content with a jQuery ```find```.
+
 
 Copyright
 ---------
 
-Copyright (c) 2012 De Marque inc. See LICENSE for further details.
+Copyright (c) 2013 De Marque inc. See LICENSE for further details.
