@@ -9,7 +9,8 @@ class ApplicationController
 
   loadView: ->
     if $('body').data('coffee-cup')
-      CoffeeCup.renderView $('body').data('coffee-cup').split('#').join('.')
+      # Split on "#" (controller action) and "::" (controller namespace).
+      CoffeeCup.renderView $('body').data('coffee-cup').split(/#|::/).join('.')
     else
       alert 'Coffee Cup : Installation incomplete. Please insert the body attribute "data-coffee-cup". See documentation for more details.'
 
